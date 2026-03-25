@@ -3,14 +3,19 @@ import { Navbar } from "@/components";
 import { HomeBg } from "@/public";
 import { Image as DefaultImage } from "antd";
 import Image from "next/image";
-import m1 from "@/public/menu/m1.jpg";
-import m2 from "@/public/menu/m2.png";
-import m3 from "@/public/menu/m3.png";
-import m4 from "@/public/menu/m4.png";
-import m5 from "@/public/menu/m5.png";
-import m6 from "@/public/menu/m6.png";
-import m7 from "@/public/menu/m7.png";
-import m10 from "@/public/menu/m10.jpg";
+import { motion } from "framer-motion";
+import m1 from "@/public/new_menu/m1.jpg";
+import m2 from "@/public/new_menu/m2.jpg";
+import m3 from "@/public/new_menu/m3.png";
+import m4 from "@/public/new_menu/m4.jpg";
+import p1 from "@/public/photo/p1.jpg";
+import p2 from "@/public/photo/p2.jpg";
+import p3 from "@/public/photo/p3.jpg";
+import p4 from "@/public/photo/p4.jpg";
+import p5 from "@/public/photo/p5.jpg";
+import p6 from "@/public/photo/p6.jpg";
+import p7 from "@/public/photo/p7.jpg";
+import p8 from "@/public/photo/p8.jpg";
 import i1 from "@/public/menu/i1.jpg";
 import i2 from "@/public/menu/i2.jpg";
 import i3 from "@/public/menu/i3.jpg";
@@ -21,10 +26,32 @@ import i7 from "@/public/menu/i7.jpg";
 import i8 from "@/public/menu/i8.jpg";
 import i9 from "@/public/menu/i9.jpg";
 import qr from "@/public/menu/qr.png";
-import news from "@/public/menu/news1.jpg";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+const staggerChildren = {
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
 
 export default function Home() {
   const images = [
+    p1.src,
+    p2.src,
+    p3.src,
+    p4.src,
+    p5.src,
+    p6.src,
+    p7.src,
+    p8.src,
     i1.src,
     i2.src,
     i3.src,
@@ -36,27 +63,40 @@ export default function Home() {
     i9.src,
   ];
   return (
-    <main className="relative w-screen">
+    <main className="relative w-screen overflow-x-hidden">
       <Navbar />
       <div className="w-screen md:pt-[300px] pt-[120px]">
-        <div className="" id="about-us">
-          <div className="w-full aspect-[250/121] relative">
+        {/* About Us */}
+        <motion.div
+          id="about-us"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerChildren}
+        >
+          <motion.div
+            className="w-full aspect-[250/121] relative"
+            variants={fadeInUp}
+          >
             <Image
               src={HomeBg.src}
-              alt="reiizakaya-syd-home-bg"
+              alt="REI IZAKAYA Sydney storefront"
               fill
               className="py-5 mx-auto"
               loading="lazy"
             />
-          </div>
-          <div className="mx-4 md:mx-40 my-5 md:my-10 flex flex-col gap-2 md:gap-4 text-[14px] md:text-xl text-justify">
+          </motion.div>
+          <motion.div
+            className="max-w-3xl mx-auto px-4 md:px-8 py-6 md:py-10 flex flex-col gap-2 md:gap-4 text-[14px] md:text-xl text-warm-white leading-relaxed md:leading-relaxed text-justify"
+            variants={fadeInUp}
+          >
             <p>
               Izakaya (居酒屋) is made up of three kanji with the meaning, in
-              order, “stay-drink-place.”
+              order, &ldquo;stay-drink-place.&rdquo;
             </p>
             <p>
               In Japan, Izakaya are places where people come to unwind with
-              co-workers and friends. Especially after a long days work, it’s
+              co-workers and friends. Especially after a long days work, it&apos;s
               important for workers to find a place they can kick back and enjoy
               their hard-earned day over drinks and tasty snacks in the company
               of their friends and co workers.
@@ -67,108 +107,131 @@ export default function Home() {
               Yakitori, Oden and our Japanese beverages, including and not
               limited to Japanese tap beer, sake and whiskys.
             </p>
-          </div>
-        </div>
-        <div
-          className="w-screen justify-center sm:justify-start flex flex-row flex-wrap pb-5 gap-x-6 gap-y-10 overflow-hidden"
+          </motion.div>
+        </motion.div>
+
+        <div className="section-divider" />
+
+        {/* Menu */}
+        <motion.div
+          className="w-screen justify-center sm:justify-start flex flex-row flex-wrap py-5 md:py-8 gap-x-6 gap-y-10 overflow-hidden"
           id="menu"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
         >
           <swiper-container
             class="menu-swiper"
             slides-per-view="auto"
-            space-between="0"
-            autoplay="true"
+            space-between="20"
+            centered-slides="true"
+            autoplay-delay="5000"
+            autoplay-pause-on-mouse-enter="true"
             grab-cursor="true"
-            scrollbar="true"
-            zoom="true"
+            loop="true"
           >
-            <swiper-slide className="bg-transparent">
-              <DefaultImage.PreviewGroup
-                items={[m1.src, m2.src, m3.src, m4.src, m5.src, m6.src, m7.src]}
-              >
-                <DefaultImage className="w-[50%] p-3" src={m1.src} />
-              </DefaultImage.PreviewGroup>
-            </swiper-slide>
-            <swiper-slide className="bg-transparent">
-              <DefaultImage.PreviewGroup
-                items={[m1.src, m2.src, m3.src, m4.src, m5.src, m6.src, m7.src]}
-              >
-                <DefaultImage className=" p-3" src={m10.src} />
-              </DefaultImage.PreviewGroup>
-            </swiper-slide>
+            {[m1, m2, m3, m4].map((menu, index) => (
+              <swiper-slide className="bg-transparent" key={index}>
+                <DefaultImage.PreviewGroup
+                  items={[m1.src, m2.src, m3.src, m4.src]}
+                >
+                  <DefaultImage className="p-2" src={menu.src} />
+                </DefaultImage.PreviewGroup>
+              </swiper-slide>
+            ))}
           </swiper-container>
-        </div>
-        <div
-          className="w-screen justify-center sm:justify-start flex flex-row flex-wrap pb-5 gap-x-6 gap-y-10 overflow-hidden"
+        </motion.div>
+
+        <div className="section-divider" />
+
+        {/* Gallery */}
+        <motion.div
+          className="w-screen justify-center sm:justify-start flex flex-row flex-wrap py-5 md:py-8 gap-x-6 gap-y-10 overflow-hidden"
           id="gallery"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
         >
           <swiper-container
             class="photo-swiper"
             slides-per-view="auto"
-            space-between="1"
-            autoplay="true"
+            space-between="16"
+            centered-slides="true"
+            autoplay-delay="4000"
+            autoplay-pause-on-mouse-enter="true"
             grab-cursor="true"
-            scrollbar="true"
-            zoom="true"
+            loop="true"
           >
             {images.map((image, index) => (
               <swiper-slide className="bg-transparent" key={index}>
                 <DefaultImage.PreviewGroup items={images}>
                   <DefaultImage
-                    className="md:w-[480px] w-[200px] md:px-2 px-1"
+                    className="md:w-[400px] w-[260px] transition-all duration-300 hover:brightness-110"
                     src={image}
                     loading="lazy"
+                    alt={`REI IZAKAYA gallery photo ${index + 1}`}
                   />
                 </DefaultImage.PreviewGroup>
               </swiper-slide>
             ))}
           </swiper-container>
-        </div>
-        <div className="lg:max-w-2xl lg:mx-auto w-screen p-5" id="news">
-          <div className="w-full aspect-square relative">
-            <Image src={news.src} alt="news" fill loading="lazy" />
-          </div>
-        </div>
-        <div className="w-screen my-5 md:my-20 py-20" id="contact-booking">
-          {/* <div className="flex items-center justify-center">
-            <InsModal />
-          </div> */}
-          <div className="flex justify-center items-center my-10  bg-white pb-4">
-            <div className="relative w-[250px]">
+        </motion.div>
+
+        <div className="section-divider" />
+
+        {/* Contact & Booking */}
+        <motion.div
+          className="w-screen py-8 md:py-14"
+          id="contact-booking"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerChildren}
+        >
+          <motion.div
+            className="flex justify-center items-center my-6 mx-auto w-fit rounded-xl bg-white/10 backdrop-blur-sm p-5 animate-qr-pulse"
+            variants={fadeInUp}
+          >
+            <div className="relative w-[180px] md:w-[200px] rounded-lg overflow-hidden bg-white p-2">
               <Image
                 src={qr.src}
-                alt="instagram"
+                alt="REI IZAKAYA Instagram QR code"
                 width={500}
                 height={500}
-                className="w-full mt-5"
+                className="w-full"
                 loading="lazy"
               />
             </div>
-          </div>
-          <div className=" md:mx-40 mx-5 flex flex-col mb-4 md:p-4 p-2">
-            <p className="md:tracking-widest tracking-tighter md:text-2xl text-[14px] md:mb-1 mb-[2px]">
+          </motion.div>
+          <motion.div
+            className="md:mx-40 mx-5 flex flex-col mb-4 md:p-4 p-2 text-warm-white"
+            variants={fadeInUp}
+          >
+            <p className="md:tracking-widest tracking-normal md:text-2xl text-[14px] md:mb-1 mb-[2px]">
               You can find us with @rei_izakaya on Instagram & Facebook
             </p>
-            <p className="md:tracking-widest tracking-tighter md:text-2xl text-[14px] mb-6">
+            <p className="md:tracking-widest tracking-normal md:text-2xl text-[14px] mb-6">
               Your feedback also means the world to us.
             </p>
-            <p className="md:tracking-widest tracking-tighter md:text-2xl text-[14px] md:mb-1 mb-[2px]">
-              For bookins please contact{" "}
+            <p className="md:tracking-widest tracking-normal md:text-2xl text-[14px] md:mb-1 mb-[2px]">
+              For bookings please contact{" "}
               <a
-                className=" underline drop-shadow-[0_0_5px] drop-shadow-white"
+                className="underline text-white hover:text-[#B11F24] hover:drop-shadow-[0_0_8px_rgba(177,31,36,0.5)] transition-all duration-300"
                 href="tel:0404517777"
               >
                 0404 517 777
               </a>
             </p>
-            <p className="md:tracking-widest tracking-tighter md:text-2xl text-[14px] md:mb-1 mb-[2px]">
+            <p className="md:tracking-widest tracking-normal md:text-2xl text-[14px] md:mb-1 mb-[2px]">
               Reservations for groups of 4 and above only at the moment.
             </p>
-            <p className="md:tracking-widest tracking-tighter md:text-2xl text-[14px] md:mb-1 mb-[2px]">
+            <p className="md:tracking-widest tracking-normal md:text-2xl text-[14px] md:mb-1 mb-[2px]">
               Sorry for any inconvenience.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </main>
   );
