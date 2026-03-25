@@ -6,7 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import m1 from "@/public/new_menu/m1.jpg";
 import m2 from "@/public/new_menu/m2.jpg";
-import m3 from "@/public/new_menu/m3.png";
+import m3 from "@/public/new_menu/m3.jpg";
 import m4 from "@/public/new_menu/m4.jpg";
 import p1 from "@/public/photo/p1.jpg";
 import p2 from "@/public/photo/p2.jpg";
